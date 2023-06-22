@@ -2,7 +2,7 @@
 // using array implementation of
 // binary heap
 
-#include<stdio.h>
+#include <stdio.h>
 
 int H[50];
 int size = -1;
@@ -35,7 +35,8 @@ int rightChild(int i)
 // to maintain the heap property
 void shiftUp(int i)
 {
-	while (i > 0 && H[parent(i)] < H[i]) {
+	while (i > 0 && H[parent(i)] < H[i])
+	{
 
 		// Swap parent and current node
 		swap(H[parent(i)], H[i]);
@@ -54,19 +55,22 @@ void shiftDown(int i)
 	// Left Child
 	int l = leftChild(i);
 
-	if (l <= size && H[l] > H[maxIndex]) {
+	if (l <= size && H[l] > H[maxIndex])
+	{
 		maxIndex = l;
 	}
 
 	// Right Child
 	int r = rightChild(i);
 
-	if (r <= size && H[r] > H[maxIndex]) {
+	if (r <= size && H[r] > H[maxIndex])
+	{
 		maxIndex = r;
 	}
 
 	// If i not same as maxIndex
-	if (i != maxIndex) {
+	if (i != maxIndex)
+	{
 		swap(H[i], H[maxIndex]);
 		shiftDown(maxIndex);
 	}
@@ -107,10 +111,12 @@ void changePriority(int i, int p)
 	int oldp = H[i];
 	H[i] = p;
 
-	if (p > oldp) {
+	if (p > oldp)
+	{
 		shiftUp(i);
 	}
-	else {
+	else
+	{
 		shiftDown(i);
 	}
 }
@@ -125,7 +131,7 @@ int getMax()
 
 // Function to remove the element
 // located at given index
-void remove(int i)
+void remove_element(int i)
 {
 	H[i] = getMax() + 1;
 
@@ -137,75 +143,9 @@ void remove(int i)
 	extractMax();
 }
 
-// Driver Code
-int main()
+void swap(int *a, int *b)
 {
-
-	/*		 45
-			/	 \
-		31	 14
-		/ \ / \
-		13 20 7 11
-		/ \
-	12 7
-	Create a priority queue shown in
-	example in a binary max heap form.
-	Queue will be represented in the
-	form of array as:
-	45 31 14 13 20 7 11 12 7 */
-
-	// Insert the element to the
-	// priority queue
-	insert(45);
-	insert(20);
-	insert(14);
-	insert(12);
-	insert(31);
-	insert(7);
-	insert(11);
-	insert(13);
-	insert(7);
-
-	int i = 0;
-
-	// Priority queue before extracting max
-	printf("Priority Queue : ");
-	while (i <= size) {
-		printf("\n%i", H[i]);
-		i++;
-	}
-
-	// Node with maximum priority
-	printf("Node with maximum priority : ");
-		printf("%i", extractMax());
-
-	// Priority queue after extracting max
-	printf("Priority queue after extracting maximum : ");
-	int j = 0;
-	while (j <= size) {
-printf("%i", H[j]);
-		j++;
-	}
-
-
-	// Change the priority of element
-	// present at index 2 to 49
-	changePriority(2, 49);
-	printf("Priority queue after priority change : ");
-	int k = 0;
-	while (k <= size) {
-printf("\n%i", H[k]);
-		k++;
-	}
-
-
-	// Remove element at index 3
-	remove(3);
-	printf("Priority queue after removing the element : ");
-	int l = 0;
-	while (l <= size) {
-		printf("\n%i", H[l]);
-		l++;
-	}
-	return 0;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
