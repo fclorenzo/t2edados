@@ -3,20 +3,6 @@
 
 int main()
 {
-
-	/*		 45
-			/	 \
-		31	 14
-		/ \ / \
-		13 20 7 11
-		/ \
-	12 7
-	Create a priority queue shown in
-	example in a binary max heap form.
-	Queue will be represented in the
-	form of array as:
-	45 31 14 13 20 7 11 12 7 */
-
 	// Insert the element to the
 	// priority queue
 	insert(45);

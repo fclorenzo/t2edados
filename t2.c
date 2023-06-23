@@ -3,9 +3,7 @@
 // binary heap
 
 #include <stdio.h>
-
-int H[50];
-int size = -1;
+#include "t2.h"
 
 // Function to return the index of the
 // parent node of a given node
@@ -39,7 +37,7 @@ void shiftUp(int i)
 	{
 
 		// Swap parent and current node
-		swap(H[parent(i)], H[i]);
+		swap(&H[parent(i)], &H[i]);
 
 		// Update i to parent of i
 		i = parent(i);
