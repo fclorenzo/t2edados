@@ -69,7 +69,7 @@ void shiftDown(int i)
 	// If i not same as maxIndex
 	if (i != maxIndex)
 	{
-		swap(H[i], H[maxIndex]);
+		swap(&H[i], &H[maxIndex]);
 		shiftDown(maxIndex);
 	}
 }
