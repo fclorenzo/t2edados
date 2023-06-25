@@ -3,60 +3,54 @@
 
 int main()
 {
-	// Insert the element to the
-	// priority queue
-	insert(45);
-	insert(20);
-	insert(14);
-	insert(12);
-	insert(31);
-	insert(7);
-	insert(11);
-	insert(13);
-	insert(7);
+    int capacity = 50;
+    PriorityQueue *queue = createPriorityQueue(capacity);
 
-	int i = 0;
+    insert(queue, 45);
+    insert(queue, 20);
+    insert(queue, 14);
+    insert(queue, 12);
+    insert(queue, 31);
+    insert(queue, 7);
+    insert(queue, 11);
+    insert(queue, 13);
+    insert(queue, 7);
 
-	// Priority queue before extracting max
-	printf("Priority Queue : ");
-	while (i <= size)
-	{
-		printf("\n%i", H[i]);
-		i++;
-	}
+    printf("Priority Queue: ");
+    for (int i = 0; i <= queue->size; i++)
+    {
+        printf("%i ", queue->heap[i]);
+    }
+    printf("\n");
 
-	// Node with maximum priority
-	printf("Node with maximum priority : ");
-	printf("%i", extractMax());
+    printf("Node with maximum priority: %i\n", extractMax(queue));
 
-	// Priority queue after extracting max
-	printf("Priority queue after extracting maximum : ");
-	int j = 0;
-	while (j <= size)
-	{
-		printf("%i", H[j]);
-		j++;
-	}
+    printf("Priority Queue after extracting maximum: ");
+    for (int i = 0; i <= queue->size; i++)
+    {
+        printf("%i ", queue->heap[i]);
+    }
+    printf("\n");
 
-	// Change the priority of element
-	// present at index 2 to 49
-	changePriority(2, 49);
-	printf("Priority queue after priority change : ");
-	int k = 0;
-	while (k <= size)
-	{
-		printf("\n%i", H[k]);
-		k++;
-	}
+    changePriority(queue, 2, 49);
 
-	// Remove element at index 3
-	remove_element(3);
-	printf("Priority queue after removing the element : ");
-	int l = 0;
-	while (l <= size)
-	{
-		printf("\n%i", H[l]);
-		l++;
-	}
-	return 0;
+    printf("Priority Queue after priority change: ");
+    for (int i = 0; i <= queue->size; i++)
+    {
+        printf("%i ", queue->heap[i]);
+    }
+    printf("\n");
+
+    removeElement(queue, 3);
+
+    printf("Priority Queue after removing the element: ");
+    for (int i = 0; i <= queue->size; i++)
+    {
+        printf("%i ", queue->heap[i]);
+    }
+    printf("\n");
+
+    destroyPriorityQueue(queue);
+
+    return 0;
 }

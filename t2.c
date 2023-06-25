@@ -1,149 +1,142 @@
-// C++ code to implement priority-queue
-// using array implementation of
-// binary heap
-
 #include <stdio.h>
+#include <stdlib.h>
 #include "t2.h"
 
-// Function to return the index of the
-// parent node of a given node
+PriorityQueue *createPriorityQueue(int capacity)
+{
+    PriorityQueue *queue = (PriorityQueue *)malloc(sizeof(PriorityQueue));
+    queue->heap = (int *)malloc(capacity * sizeof(int));
+    queue->size = -1;
+    queue->capacity = capacity;
+    return queue;
+}
+
+void destroyPriorityQueue(PriorityQueue *queue)
+{
+    free(queue->heap);
+    free(queue);
+}
+
 int parent(int i)
 {
-
-	return (i - 1) / 2;
+    return (i - 1) / 2;
 }
 
-// Function to return the index of the
-// left child of the given node
 int leftChild(int i)
 {
-
-	return ((2 * i) + 1);
+    return (2 * i) + 1;
 }
 
-// Function to return the index of the
-// right child of the given node
 int rightChild(int i)
 {
-
-	return ((2 * i) + 2);
+    return (2 * i) + 2;
 }
 
-// Function to shift up the node in order
-// to maintain the heap property
-void shiftUp(int i)
+void shiftUp(PriorityQueue *queue, int i)
 {
-	while (i > 0 && H[parent(i)] < H[i])
-	{
-
-		// Swap parent and current node
-		swap(&H[parent(i)], &H[i]);
-
-		// Update i to parent of i
-		i = parent(i);
-	}
+    while (i > 0 && queue->heap[parent(i)] < queue->heap[i])
+    {
+        int temp = queue->heap[parent(i)];
+        queue->heap[parent(i)] = queue->heap[i];
+        queue->heap[i] = temp;
+        i = parent(i);
+    }
 }
 
-// Function to shift down the node in
-// order to maintain the heap property
-void shiftDown(int i)
+void shiftDown(PriorityQueue *queue, int i)
 {
-	int maxIndex = i;
+    int maxIndex = i;
+    int left = leftChild(i);
+    int right = rightChild(i);
 
-	// Left Child
-	int l = leftChild(i);
+    if (left <= queue->size && queue->heap[left] > queue->heap[maxIndex])
+    {
+        maxIndex = left;
+    }
 
-	if (l <= size && H[l] > H[maxIndex])
-	{
-		maxIndex = l;
-	}
+    if (right <= queue->size && queue->heap[right] > queue->heap[maxIndex])
+    {
+        maxIndex = right;
+    }
 
-	// Right Child
-	int r = rightChild(i);
-
-	if (r <= size && H[r] > H[maxIndex])
-	{
-		maxIndex = r;
-	}
-
-	// If i not same as maxIndex
-	if (i != maxIndex)
-	{
-		swap(&H[i], &H[maxIndex]);
-		shiftDown(maxIndex);
-	}
+    if (i != maxIndex)
+    {
+        int temp = queue->heap[i];
+        queue->heap[i] = queue->heap[maxIndex];
+        queue->heap[maxIndex] = temp;
+        shiftDown(queue, maxIndex);
+    }
 }
 
-// Function to insert a new element
-// in the Binary Heap
-void insert(int p)
+void insert(PriorityQueue *queue, int p)
 {
-	size = size + 1;
-	H[size] = p;
+    if (queue->size == queue->capacity - 1)
+    {
+        printf("Priority queue is full. Cannot insert more elements.\n");
+        return;
+    }
 
-	// Shift Up to maintain heap property
-	shiftUp(size);
+    queue->size++;
+    queue->heap[queue->size] = p;
+    shiftUp(queue, queue->size);
 }
 
-// Function to extract the element with
-// maximum priority
-int extractMax()
+int extractMax(PriorityQueue *queue)
 {
-	int result = H[0];
+    if (queue->size < 0)
+    {
+        printf("Priority queue is empty. Cannot extract maximum element.\n");
+        return -1; // or any other appropriate error value
+    }
 
-	// Replace the value at the root
-	// with the last leaf
-	H[0] = H[size];
-	size = size - 1;
-
-	// Shift down the replaced element
-	// to maintain the heap property
-	shiftDown(0);
-	return result;
+    int maxElement = queue->heap[0];
+    queue->heap[0] = queue->heap[queue->size];
+    queue->size--;
+    shiftDown(queue, 0);
+    return maxElement;
 }
 
-// Function to change the priority
-// of an element
-void changePriority(int i, int p)
+void changePriority(PriorityQueue *queue, int i, int p)
 {
-	int oldp = H[i];
-	H[i] = p;
+    if (i < 0 || i > queue->size)
+    {
+        printf("Invalid index.\n");
+        return;
+    }
 
-	if (p > oldp)
-	{
-		shiftUp(i);
-	}
-	else
-	{
-		shiftDown(i);
-	}
+    int oldPriority = queue->heap[i];
+    queue->heap[i] = p;
+
+    if (p > oldPriority)
+    {
+        shiftUp(queue, i);
+    }
+    else
+    {
+        shiftDown(queue, i);
+    }
 }
 
-// Function to get value of the current
-// maximum element
-int getMax()
+int getMax(PriorityQueue *queue)
 {
+    if (queue->size < 0)
+    {
+        printf("Priority queue is empty.\n");
+        return -1; // or any other appropriate error value
+    }
 
-	return H[0];
+    return queue->heap[0];
 }
 
-// Function to remove the element
-// located at given index
-void remove_element(int i)
+void removeElement(PriorityQueue *queue, int i)
 {
-	H[i] = getMax() + 1;
+    if (i < 0 || i > queue->size)
+    {
+        printf("Invalid index.\n");
+        return;
+    }
 
-	// Shift the node to the root
-	// of the heap
-	shiftUp(i);
-
-	// Extract the node
-	extractMax();
-}
-
-void swap(int *a, int *b)
-{
-	int temp = *a;
-	*a = *b;
-	*b = temp;
+    queue->heap[i] = getMax(queue) + 1;
+    shiftUp(queue, i);
+    extractMax(queue);
 }
