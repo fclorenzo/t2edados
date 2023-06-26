@@ -3,18 +3,20 @@
 
 int main()
 {
-    int capacity = 50;
+    printf("\nEnter the total capacity for the queue");
+    int capacity, qt, element;
+    scanf("%i", &capacity);
     PriorityQueue *queue = createPriorityQueue(capacity);
 
-    insert(queue, 45);
-    insert(queue, 20);
-    insert(queue, 14);
-    insert(queue, 12);
-    insert(queue, 31);
-    insert(queue, 7);
-    insert(queue, 11);
-    insert(queue, 13);
-    insert(queue, 7);
+    printf("\nEnter the quantity of elements to insert in the queue:");
+    scanf("%i", &qt);
+    for (int i = 0; i < qt; i++)
+    {
+        printf("\nEnter the element to be inserted:");
+        fflush(stdin);
+        scanf("%i", &element);
+        insert(queue, element);
+    }
 
     printf("\nPriority Queue: ");
     for (int i = 0; i <= queue->size; i++)
@@ -22,23 +24,9 @@ int main()
         printf("\n%i ", queue->heap[i]);
     }
 
-    printf("\nNode with maximum priority: %i", extractMax(queue));
-
-    printf("\nPriority Queue after extracting maximum: ");
-    for (int i = 0; i <= queue->size; i++)
-    {
-        printf("\n%i ", queue->heap[i]);
-    }
-
-    changePriority(queue, 2, 49);
-
-    printf("\nPriority Queue after priority change: ");
-    for (int i = 0; i <= queue->size; i++)
-    {
-        printf("\n%i ", queue->heap[i]);
-    }
-
-    removeElement(queue, 3);
+    printf("\nEnter the element to be removed from the queue:");
+    scanf("%i", &element);
+    removeElement(queue, element);
 
     printf("\nPriority Queue after removing the element: ");
     for (int i = 0; i <= queue->size; i++)

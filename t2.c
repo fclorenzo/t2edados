@@ -81,22 +81,7 @@ void insert(PriorityQueue *queue, int p)
     shiftUp(queue, queue->size);
 }
 
-int extractMax(PriorityQueue *queue)
-{
-    if (queue->size < 0)
-    {
-        printf("\nPriority queue is empty. Cannot extract maximum element.");
-        return -1; // or any other appropriate error value
-    }
-
-    int maxElement = queue->heap[0];
-    queue->heap[0] = queue->heap[queue->size];
-    queue->size--;
-    shiftDown(queue, 0);
-    return maxElement;
-}
-
-void changePriority(PriorityQueue *queue, int i, int p)
+void removeElement(PriorityQueue *queue, int i)
 {
     if (i < 0 || i > queue->size)
     {
@@ -104,17 +89,9 @@ void changePriority(PriorityQueue *queue, int i, int p)
         return;
     }
 
-    int oldPriority = queue->heap[i];
-    queue->heap[i] = p;
-
-    if (p > oldPriority)
-    {
-        shiftUp(queue, i);
-    }
-    else
-    {
-        shiftDown(queue, i);
-    }
+    queue->heap[i] = getMax(queue) + 1;
+    shiftUp(queue, i);
+    extractMax(queue);
 }
 
 int getMax(PriorityQueue *queue)
@@ -128,15 +105,17 @@ int getMax(PriorityQueue *queue)
     return queue->heap[0];
 }
 
-void removeElement(PriorityQueue *queue, int i)
+int extractMax(PriorityQueue *queue)
 {
-    if (i < 0 || i > queue->size)
+    if (queue->size < 0)
     {
-        printf("\nInvalid index.");
-        return;
+        printf("\nPriority queue is empty. Cannot extract maximum element.");
+        return -1; // or any other appropriate error value
     }
 
-    queue->heap[i] = getMax(queue) + 1;
-    shiftUp(queue, i);
-    extractMax(queue);
+    int maxElement = queue->heap[0];
+    queue->heap[0] = queue->heap[queue->size];
+    queue->size--;
+    shiftDown(queue, 0);
+    return maxElement;
 }
