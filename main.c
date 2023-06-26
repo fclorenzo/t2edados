@@ -3,16 +3,16 @@
 
 int main()
 {
-    printf("\nEnter the total capacity for the queue");
+    printf("\nEnter the total capacity for the queue: ");
     int capacity, qt, element;
     scanf("%i", &capacity);
     PriorityQueue *queue = createPriorityQueue(capacity);
 
-    printf("\nEnter the quantity of elements to insert in the queue:");
+    printf("\nEnter the quantity of elements to insert in the queue: ");
     scanf("%i", &qt);
     for (int i = 0; i < qt; i++)
     {
-        printf("\nEnter the element to be inserted:");
+        printf("\nEnter the element to be inserted: ");
         fflush(stdin);
         scanf("%i", &element);
         insert(queue, element);
@@ -24,7 +24,7 @@ int main()
         printf("\n%i ", queue->heap[i]);
     }
 
-    printf("\nEnter the position of the element to be removed from the queue:");
+    printf("\nEnter the position of the element to be removed from the queue: ");
     scanf("%i", &element);
     removeElement(queue, element - 1);
 
