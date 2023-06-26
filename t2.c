@@ -72,7 +72,7 @@ void insert(PriorityQueue *queue, int p)
 {
     if (queue->size == queue->capacity - 1)
     {
-        printf("Priority queue is full. Cannot insert more elements.\n");
+        printf("\nPriority queue is full. Cannot insert more elements.");
         return;
     }
 
@@ -85,7 +85,7 @@ int extractMax(PriorityQueue *queue)
 {
     if (queue->size < 0)
     {
-        printf("Priority queue is empty. Cannot extract maximum element.\n");
+        printf("\nPriority queue is empty. Cannot extract maximum element.");
         return -1; // or any other appropriate error value
     }
 
@@ -100,7 +100,7 @@ void changePriority(PriorityQueue *queue, int i, int p)
 {
     if (i < 0 || i > queue->size)
     {
-        printf("Invalid index.\n");
+        printf("\nInvalid index.");
         return;
     }
 
@@ -121,7 +121,7 @@ int getMax(PriorityQueue *queue)
 {
     if (queue->size < 0)
     {
-        printf("Priority queue is empty.\n");
+        printf("\nPriority queue is empty.");
         return -1; // or any other appropriate error value
     }
 
@@ -132,7 +132,7 @@ void removeElement(PriorityQueue *queue, int i)
 {
     if (i < 0 || i > queue->size)
     {
-        printf("Invalid index.\n");
+        printf("\nInvalid index.");
         return;
     }
 
