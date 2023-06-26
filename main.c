@@ -16,7 +16,7 @@ int main()
     insert(queue, 13);
     insert(queue, 7);
 
-    printf("\mPriority Queue: ");
+    printf("\nPriority Queue: ");
     for (int i = 0; i <= queue->size; i++)
     {
         printf("\n%i ", queue->heap[i]);
@@ -24,10 +24,10 @@ int main()
 
     printf("\nNode with maximum priority: %i", extractMax(queue));
 
-    printf("Priority Queue after extracting maximum: ");
+    printf("\nPriority Queue after extracting maximum: ");
     for (int i = 0; i <= queue->size; i++)
     {
-        printf("\m%i ", queue->heap[i]);
+        printf("\n%i ", queue->heap[i]);
     }
 
     changePriority(queue, 2, 49);
