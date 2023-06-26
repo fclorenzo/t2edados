@@ -24,9 +24,9 @@ int main()
         printf("\n%i ", queue->heap[i]);
     }
 
-    printf("\nEnter the element to be removed from the queue:");
+    printf("\nEnter the position of the element to be removed from the queue:");
     scanf("%i", &element);
-    removeElement(queue, element);
+    removeElement(queue, element - 1);
 
     printf("\nPriority Queue after removing the element: ");
     for (int i = 0; i <= queue->size; i++)
