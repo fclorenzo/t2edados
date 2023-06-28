@@ -81,19 +81,6 @@ void insert(PriorityQueue *queue, int p)
     shiftUp(queue, queue->size);
 }
 
-void removeElement(PriorityQueue *queue, int i)
-{
-    if (i < 0 || i > queue->size)
-    {
-        printf("\nInvalid index.");
-        return;
-    }
-
-    queue->heap[i] = getMax(queue) + 1;
-    shiftUp(queue, i);
-    extractMax(queue);
-}
-
 int getMax(PriorityQueue *queue)
 {
     if (queue->size < 0)

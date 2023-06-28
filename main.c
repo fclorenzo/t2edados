@@ -21,17 +21,24 @@ int main()
     printf("\nPriority Queue: ");
     for (int i = 0; i <= queue->size; i++)
     {
-        printf("\n%i ", queue->heap[i]);
+        printf("\n%i (Parent: %i", queue->heap[i], queue->heap[parent(i)]);
+        if (leftChild(i) <= queue->size)
+            printf(", Left Child: %i", queue->heap[leftChild(i)]);
+        if (rightChild(i) <= queue->size)
+            printf(", Right Child: %i", queue->heap[rightChild(i)]);
+        printf(")");
     }
 
-    printf("\nEnter the position of the element to be removed from the queue: ");
-    scanf("%i", &element);
-    removeElement(queue, element - 1);
-
-    printf("\nPriority Queue after removing the element: ");
+    extractMax(queue);
+    printf("\nPriority Queue after removing the highest priority element: ");
     for (int i = 0; i <= queue->size; i++)
     {
-        printf("\n%i ", queue->heap[i]);
+        printf("\n%i (Parent: %i", queue->heap[i], queue->heap[parent(i)]);
+        if (leftChild(i) <= queue->size)
+            printf(", Left Child: %i", queue->heap[leftChild(i)]);
+        if (rightChild(i) <= queue->size)
+            printf(", Right Child: %i", queue->heap[rightChild(i)]);
+        printf(")");
     }
 
     destroyPriorityQueue(queue);
