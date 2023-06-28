@@ -92,17 +92,15 @@ int getMax(PriorityQueue *queue)
     return queue->heap[0];
 }
 
-int extractMax(PriorityQueue *queue)
+void extractMax(PriorityQueue *queue)
 {
     if (queue->size < 0)
     {
         printf("\nPriority queue is empty. Cannot extract maximum element.");
-        return -1; // or any other appropriate error value
+        return; // or any other appropriate error value
     }
 
-    int maxElement = queue->heap[0];
     queue->heap[0] = queue->heap[queue->size];
     queue->size--;
     shiftDown(queue, 0);
-    return maxElement;
 }

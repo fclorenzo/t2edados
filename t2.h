@@ -17,6 +17,6 @@ void shiftUp(PriorityQueue *queue, int i);
 void shiftDown(PriorityQueue *queue, int i);
 void insert(PriorityQueue *queue, int p);
 int getMax(PriorityQueue *queue);
-int extractMax(PriorityQueue *queue);
+void extractMax(PriorityQueue *queue);
 
 #endif
