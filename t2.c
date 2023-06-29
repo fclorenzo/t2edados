@@ -104,3 +104,30 @@ void extractMax(PriorityQueue *queue)
     queue->size--;
     shiftDown(queue, 0);
 }
+void options()
+{
+    printf("\nMenu");
+    printf("\nOptions: ");
+    printf("\n1: Insert element(s)");
+    printf("\n2: Print the queue");
+    printf("\n3: Dequeue the element with the highest priority");
+    printf("\n0: Exit the program");
+    printf("\nEnter your choice: ");
+}
+void print_queue(PriorityQueue *queue)
+{
+    for (int i = 0; i <= queue->size; i++)
+    {
+        printf("\n%i (", queue->heap[i]);
+
+        if (queue->heap[i] == queue->heap[parent(i)])
+            printf("Root node");
+        else
+            printf("Parent: %i", queue->heap[parent(i)]);
+        if (leftChild(i) <= queue->size)
+            printf(", Left Child: %i", queue->heap[leftChild(i)]);
+        if (rightChild(i) <= queue->size)
+            printf(", Right Child: %i", queue->heap[rightChild(i)]);
+        printf(")");
+    }
+}
