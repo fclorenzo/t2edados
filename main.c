@@ -9,15 +9,11 @@ int main()
     PriorityQueue *queue = createPriorityQueue(capacity);
 
     do
-    {
-        printf("\nMenu");
-        printf("\nOptions: ");
-        printf("\n1: Insert element(s)");
-        printf("\n2: Print the queue");
-        printf("\n3: Dequeue the element with the highest priority");
-        printf("\n0: Exit the program");
-        printf("\nEnter your choice: ");
+    {   
+        options();
+        getchar();
         scanf("%i", &choice);
+
         switch (choice)
         {
         case 1:
@@ -30,33 +26,19 @@ int main()
                 scanf("%i", &element);
                 insert(queue, element);
             }
+            printf("\nPriority Queue: ");
+            print_queue(queue);
             break;
 
         case 2:
             printf("\nPriority Queue: ");
-            for (int i = 0; i <= queue->size; i++)
-            {
-                printf("\n%i (Parent: %i", queue->heap[i], queue->heap[parent(i)]);
-                if (leftChild(i) <= queue->size)
-                    printf(", Left Child: %i", queue->heap[leftChild(i)]);
-                if (rightChild(i) <= queue->size)
-                    printf(", Right Child: %i", queue->heap[rightChild(i)]);
-                printf(")");
-            }
+            print_queue(queue);
             break;
 
         case 3:
             extractMax(queue);
             printf("\nPriority Queue after removing the highest priority element: ");
-            for (int i = 0; i <= queue->size; i++)
-            {
-                printf("\n%i (Parent: %i", queue->heap[i], queue->heap[parent(i)]);
-                if (leftChild(i) <= queue->size)
-                    printf(", Left Child: %i", queue->heap[leftChild(i)]);
-                if (rightChild(i) <= queue->size)
-                    printf(", Right Child: %i", queue->heap[rightChild(i)]);
-                printf(")");
-            }
+            print_queue(queue);
             break;
 
         case 0:
