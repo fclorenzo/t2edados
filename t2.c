@@ -70,12 +70,6 @@ void shiftDown(PriorityQueue *queue, int i)
 
 void insert(PriorityQueue *queue, int p)
 {
-    if (queue->size == queue->capacity - 1)
-    {
-        printf("\nPriority queue is full. Cannot insert more elements.");
-        return;
-    }
-
     queue->size++;
     queue->heap[queue->size] = p;
     shiftUp(queue, queue->size);
@@ -120,12 +114,14 @@ void print_queue(PriorityQueue *queue)
     {
         printf("\n%i (", queue->heap[i]);
 
-        if (queue->heap[i] == queue->heap[parent(i)])
+        if (i == 0)
             printf("Root node");
         else
             printf("Parent: %i", queue->heap[parent(i)]);
+
         if (leftChild(i) <= queue->size)
             printf(", Left Child: %i", queue->heap[leftChild(i)]);
+            
         if (rightChild(i) <= queue->size)
             printf(", Right Child: %i", queue->heap[rightChild(i)]);
         printf(")");

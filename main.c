@@ -3,9 +3,14 @@
 
 int main()
 {
+    int qt, element, choice, capacity;
+    
     printf("\nEnter the total capacity for the queue: ");
-    int capacity, qt, element, choice;
-    scanf("%i", &capacity);
+    do
+    {
+        scanf("%d", &capacity);
+    } while (capacity < 1);
+    
     PriorityQueue *queue = createPriorityQueue(capacity);
 
     do
@@ -17,8 +22,16 @@ int main()
         switch (choice)
         {
         case 1:
+            if (queue->size == queue->capacity){
+                printf("\nThe capacity of the heap is full");
+                break;
+            }
+
             printf("\nEnter the quantity of elements to insert in the queue: ");
-            scanf("%i", &qt);
+            do {
+                scanf("%i", &qt);
+            } while (qt + queue->size > queue->capacity);
+
             for (int i = 0; i < qt; i++)
             {
                 printf("\nEnter the element to be inserted: ");
