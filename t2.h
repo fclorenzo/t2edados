@@ -18,7 +18,7 @@ void shiftDown(PriorityQueue *queue, int i);
 void insert(PriorityQueue *queue, int p);
 int getMax(PriorityQueue *queue);
 void extractMax(PriorityQueue *queue);
-void options();
+void options_to_choose();
 void print_queue(PriorityQueue *queue);
 
 

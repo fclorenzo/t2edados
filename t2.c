@@ -98,7 +98,7 @@ void extractMax(PriorityQueue *queue)
     queue->size--;
     shiftDown(queue, 0);
 }
-void options()
+void options_to_choose()
 {
     printf("\nMenu");
     printf("\nOptions: ");
