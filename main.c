@@ -3,7 +3,7 @@
 
 int main()
 {
-    int qty_of_elements, element, choice, capacity;
+    int qty_of_elements, element, choice, capacity, real_size_queue;
 
     printf("\nEnter the total capacity for the queue: ");
     do
@@ -22,7 +22,7 @@ int main()
         switch (choice)
         {
         case 1:
-            int real_size_queue = queue->size + 1;
+            real_size_queue = queue->size + 1;
 
             if (real_size_queue == queue->capacity)
             {
