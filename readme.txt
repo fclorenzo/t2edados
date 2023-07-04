@@ -1,0 +1,1 @@
+As alterações feitas localizam-se na seção 1.1 do relatório. Entre elas, destacam-se a adição do parágrafo explicativo sobre os tipos de árvores, sendo elas estritamente binária, completa ou cheia, além da imagem 3.7 retirada do livro: Estruturas De Dados E Seus Algoritmos, de Jayme Luiz Szwarcfiter.
